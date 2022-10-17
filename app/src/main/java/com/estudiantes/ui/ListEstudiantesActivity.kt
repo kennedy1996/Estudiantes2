@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.estudiantes.R
 import com.estudiantes.firebase.entity.EstudianteDtos
-import com.estudiantes.firebase.service.FirebaseService
 import com.estudiantes.inicializatorFirebase
 import com.estudiantes.ui.viewModel.EstudiantesViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class ListEstudiantesActivity : AppCompatActivity() {
 
     private val viewModel by lazy {
         val provider = ViewModelProvider(this)
@@ -18,14 +18,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.list_estudiantes_activity)
         inicializatorFirebase(this)
 
-        viewModel.sendEstudianteToFirebase(
-            EstudianteDtos(
-                "03", "Juan", "", 9
+        val fab = findViewById<FloatingActionButton>(R.id.list_estudiantes_activity_fab)
+
+        fab.setOnClickListener {
+            viewModel.sendEstudianteToFirebase(
+                EstudianteDtos(
+                    "5", "Isabel", "León", 80
+                )
             )
-        )
+        }
 
     }
 }
