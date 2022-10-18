@@ -57,6 +57,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:textSize="24sp"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/dialog_new_estudiantes_text_nombre"
         app:layout_constraintStart_toStartOf="@+id/dialog_new_estudiantes_text_nombre"
