@@ -32,14 +32,14 @@ fun dialogNewEstudiante(context: Context, viewModel: EstudiantesViewModel){
 
         if(!error){
             val estudiante = EstudianteDtos(
-                id = "200",
+                id = viewModel.nextID(),
                 name = nombreText,
                 age = edadText.toInt(),
-                city = ciudadText,
+                city = ciudadText
             )
             viewModel.sendEstudianteToFirebase(estudiante)
             dialog.dismiss()
-            Toast.makeText(context, "$nombreText, $edadText años y $ciudadText", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "${estudiante.id} :$nombreText, $edadText años y $ciudadText", Toast.LENGTH_LONG).show()
         }
     }
 }

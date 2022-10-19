@@ -20,17 +20,12 @@ class ListEstudiantesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_estudiantes_activity)
         inicializatorFirebase(this)
+        viewModel.searchEstudianteFirebase()
 
         val fab = findViewById<FloatingActionButton>(R.id.list_estudiantes_activity_fab)
 
         fab.setOnClickListener {
-//            viewModel.sendEstudianteToFirebase(
-//                EstudianteDtos(
-//                    "5", "Isabel", "León", 80
-//                )
-//            )
-//            dialogNewEstudiante(this, viewModel)
-            viewModel.searchEstudianteFirebase()
+            dialogNewEstudiante(this, viewModel)
         }
 
     }
