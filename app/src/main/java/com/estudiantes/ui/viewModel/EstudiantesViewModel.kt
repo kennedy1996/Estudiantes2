@@ -10,6 +10,9 @@ class EstudiantesViewModel: ViewModel() {
     fun sendEstudianteToFirebase(estudiante: EstudianteDtos){
         repository.sendToFirebase(estudiante)
     }
+    fun searchEstudianteFirebase(){
+        repository.searchFirebase()
+    }
 
 
 }

@@ -29,7 +29,8 @@ class ListEstudiantesActivity : AppCompatActivity() {
 //                    "5", "Isabel", "León", 80
 //                )
 //            )
-            dialogNewEstudiante(this, viewModel)
+//            dialogNewEstudiante(this, viewModel)
+            viewModel.searchEstudianteFirebase()
         }
 
     }
