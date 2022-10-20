@@ -6,11 +6,17 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.estudiantes.R
 import com.estudiantes.firebase.entity.EstudianteDtos
+import com.estudiantes.ui.adapter.ListEstudiantesAdapter
 import com.estudiantes.ui.viewModel.EstudiantesViewModel
 
-fun dialogNewEstudiante(context: Context, viewModel: EstudiantesViewModel){
+fun dialogNewEstudiante(
+    context: Context,
+    viewModel: EstudiantesViewModel,
+    adapter: RecyclerView.Adapter<ListEstudiantesAdapter.ViewHolder>?
+){
     val dialog = Dialog(context)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.setCancelable(false)
@@ -39,7 +45,7 @@ fun dialogNewEstudiante(context: Context, viewModel: EstudiantesViewModel){
             )
             viewModel.sendEstudianteToFirebase(estudiante)
             dialog.dismiss()
-            Toast.makeText(context, "${estudiante.id} :$nombreText, $edadText años y $ciudadText", Toast.LENGTH_LONG).show()
+            adapter!!.notifyDataSetChanged()
         }
     }
 }
