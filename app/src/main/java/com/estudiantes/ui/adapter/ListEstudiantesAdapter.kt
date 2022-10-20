@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.estudiantes.R
+import com.estudiantes.ui.dialog.dialogModifyEstudiante
 import com.estudiantes.ui.viewModel.EstudiantesViewModel
 
 class ListEstudiantesAdapter(
@@ -39,6 +41,10 @@ class ListEstudiantesAdapter(
             holder.nombre.text = listAdapter.name
             holder.ciudad.text = listAdapter.city
             holder.edad.text= listAdapter.age.toString()
+
+            holder.itemView.setOnClickListener {
+                dialogModifyEstudiante(context, viewModel, this, listAdapter, position)
+            }
 
         } catch (e: Exception) {
             Log.e("ListEstudiantesAdapter", e.message.toString())

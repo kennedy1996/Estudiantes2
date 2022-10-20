@@ -19,7 +19,7 @@ fun dialogNewEstudiante(
 ){
     val dialog = Dialog(context)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-    dialog.setCancelable(false)
+    dialog.setCancelable(true)
     dialog.setContentView(R.layout.dialog_new_estudiante)
     dialog.show()
 
@@ -49,6 +49,52 @@ fun dialogNewEstudiante(
         }
     }
 }
+fun dialogModifyEstudiante(
+    context: Context,
+    viewModel: EstudiantesViewModel,
+    adapter: RecyclerView.Adapter<ListEstudiantesAdapter.ViewHolder>?,
+    estudianteRecebido: EstudianteDtos,
+    position: Int
+){
+    val dialog = Dialog(context)
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    dialog.setCancelable(true)
+    dialog.setContentView(R.layout.dialog_new_estudiante)
+    dialog.show()
+
+    val nombre: EditText = dialog.findViewById(R.id.dialog_new_estudiantes_text_nombre_field)
+    val edad: EditText = dialog.findViewById(R.id.dialog_new_estudiantes_text_edad_field)
+    val ciudad: EditText = dialog.findViewById(R.id.dialog_new_estudiantes_text_ciudad_field)
+    val buttonSave: Button = dialog.findViewById(R.id.dialog_new_estudiante_button_save)
+
+    nombre.setText(estudianteRecebido.name)
+    edad.setText(estudianteRecebido.age.toString())
+    ciudad.setText(estudianteRecebido.city)
+
+
+    buttonSave.setOnClickListener {
+        val nombreText = nombre.text.toString()
+        val edadText = edad.text.toString()
+        val ciudadText = ciudad.text.toString()
+        var error = false
+
+        error = checkingData(nombreText, nombre, error, edadText, edad, ciudadText, ciudad)
+
+        if(!error){
+            val estudiante = EstudianteDtos(
+                id = estudianteRecebido.id,
+                name = nombreText,
+                age = edadText.toInt(),
+                city = ciudadText
+            )
+            viewModel.sendEstudianteToFirebase(estudiante)
+            dialog.dismiss()
+            adapter!!.notifyItemChanged(position)
+        }
+    }
+}
+
+
 
 private fun checkingData(
     nombreText: String,
