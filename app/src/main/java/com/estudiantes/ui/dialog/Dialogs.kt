@@ -45,6 +45,7 @@ fun dialogNewEstudiante(
             )
             viewModel.sendEstudianteToFirebase(estudiante)
             dialog.dismiss()
+//            viewModel.searchEstudianteFirebase()
             adapter!!.notifyDataSetChanged()
         }
     }
@@ -87,7 +88,7 @@ fun dialogModifyEstudiante(
                 age = edadText.toInt(),
                 city = ciudadText
             )
-            viewModel.sendEstudianteToFirebase(estudiante)
+            viewModel.changeEstudianteToFirebase(estudiante)
             dialog.dismiss()
             adapter!!.notifyItemChanged(position)
         }

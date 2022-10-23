@@ -44,4 +44,8 @@ class FirebaseService {
 
     private fun convertToEstudiante(documento: DocumentSnapshot): EstudianteDtos? =
         documento.toObject(DocumentConverter::class.java)?.forEstudiante(documento.id)
+
+    fun deleteEstudiante(id: String) {
+        collection.document(id).delete()
+    }
 }

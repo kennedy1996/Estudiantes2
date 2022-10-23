@@ -12,4 +12,8 @@ class EstudiantesRepository {
     fun searchFirebase() : List<EstudianteDtos>{
         return firebaseService.recibeEstudianteParaFirebase()
     }
+
+    fun deleteEstudiante(id: String) {
+        firebaseService.deleteEstudiante(id)
+    }
 }
